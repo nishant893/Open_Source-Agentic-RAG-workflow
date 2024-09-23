@@ -8,5 +8,8 @@ llama-index-embeddings-instructor == 0.2.1
 chromadb == 0.5.7
 sentence-transformers == 2.7.0
 pydantic == 2.9.2
-llama-index-vector-stores-chroma ==0.2.0
 
+llama-index-vector-stores-chroma ==0.2.0
+fastapi == 0.115.0
+uvicorn == 0.30.6
+anyio == 4.4.0
