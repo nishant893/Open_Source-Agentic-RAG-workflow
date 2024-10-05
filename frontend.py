@@ -117,7 +117,3 @@ st.sidebar.info(
     "and generate responses based on your queries. It can handle questions about sound and its properties, "
     "as well as perform web searches for other topics. You can provide feedback on responses to get more detailed information."
 )
-
-# Footer
-st.sidebar.markdown("---")
-st.sidebar.markdown("Developed with ❤️ using Streamlit and FastAPI")
