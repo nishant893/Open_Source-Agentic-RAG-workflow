@@ -44,6 +44,21 @@ This is the heart of the agentic system, defining the `RAGSystem` class which in
 
 The workflow uses the `@step` decorator to define each stage of the process, allowing the system to make decisions and take actions based on the current state and available information.
 
+### 4. new_api.py
+
+This file sets up the FastAPI backend, which serves as the interface between the frontend and the agentic RAG system:
+
+- Initializes the global components (index, LLM, RAG system) on startup.
+- Defines endpoints for handling queries (`/query`) and user feedback (`/feedback`).
+- Manages the interaction between the frontend and the RAG system.
+
+### 5. frontend.py
+
+The Streamlit-based frontend provides the user interface for interacting with the agentic RAG system:
+
+- Displays the chat history and handles user input.
+- Sends queries to the backend and displays responses.
+- Manages the feedback mechanism for refining responses.
 
 ## Agentic Properties and Functionality
 
@@ -134,16 +149,6 @@ This agentic approach allows the RAG system to handle complex queries, adapt to 
 3. If the system requests feedback, indicate whether the response was satisfactory.
 4. For unsatisfactory responses, the system will perform an advanced query to provide more detailed information.
 
-## System Flow
-
-1. User submits a query through the Streamlit frontend.
-2. Query is sent to the FastAPI backend.
-3. RAG system classifies the query and selects the appropriate tool.
-4. Initial response is generated and returned to the user.
-5. User provides feedback on the response quality.
-6. If the response is unsatisfactory, the system performs self-analysis and generates a follow-up query.
-7. Additional information is retrieved based on the self-query.
-8. A final, refined answer is generated and presented to the user.
 
 ## Contributing
 
