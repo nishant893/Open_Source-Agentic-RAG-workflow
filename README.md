@@ -150,6 +150,11 @@ This agentic approach allows the RAG system to handle complex queries, adapt to 
 4. For unsatisfactory responses, the system will perform an advanced query to provide more detailed information.
 
 
+## NOTE: 
+1. The src.ipynb file has the raw code for the system.
+2. The files streamfile.py , api.py , rag_setup.py are the files for the basic RAG doc QnA system. The usage is similar to the Agentic RAG system.
+
+
 ## Contributing
 
 Contributions to improve the system are welcome. Please follow these steps:
@@ -170,6 +175,3 @@ Contributions to improve the system are welcome. Please follow these steps:
 - LlamaIndex for vector indexing and retrieval
 - Groq for language modeling
 - FastAPI and Streamlit for backend and frontend frameworks
-
-
-
