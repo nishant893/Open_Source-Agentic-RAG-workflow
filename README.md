@@ -170,3 +170,6 @@ Contributions to improve the system are welcome. Please follow these steps:
 - LlamaIndex for vector indexing and retrieval
 - Groq for language modeling
 - FastAPI and Streamlit for backend and frontend frameworks
+
+
+
