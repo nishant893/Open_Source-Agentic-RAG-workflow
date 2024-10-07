@@ -51,7 +51,7 @@ for message in st.session_state.chat_history:
 # Handle user feedback if awaiting
 if st.session_state.awaiting_feedback:
     st.info("Is the above response satisfactory?")
-    st.info("If you select 'No', the system will perform an advanced query search to provide a more comprehensive response.")
+    st.info("If you select 'No', the system will self-query to find any additional info required to generate a more comprehensive response")
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Yes"):

@@ -3,7 +3,7 @@ from llama_index.core.workflow import Workflow, StartEvent, StopEvent, step, Eve
 from llama_index.core.tools import FunctionTool
 from llama_index.core import VectorStoreIndex
 from groq import Groq
-from tools import query_engine, analyze_response, generate_final_answer, web_search_tool, handle_human_message, classify_query
+from tools import query_engine, analyze_response, generate_final_answer, web_search_tool, handle_human_message, classify_query, generate_initial_response
 import logging
 import asyncio
 
@@ -54,6 +54,7 @@ class RAGSystem(Workflow):
             )
         }
 
+
     @step
     async def handle_initial_query(self, ev: InputEvent, context: Dict[str, Any]) -> StopEvent | ToolCallEvent:
         query = ev.input
@@ -93,16 +94,25 @@ class RAGSystem(Workflow):
             return ev
         
         try:
-            tool_output = await self.tools[ev.name].fn(**ev.params)
-            initial_response = tool_output["response"]
-            context["initial_response"] = initial_response
-            logger.info(f"Initial Response: {initial_response}")
+            tool_output = await self.tools[ev.name].fn(**ev.params)   
 
             if ev.id == "web_search":
+                initial_response = tool_output["response"]
+                context["initial_response"] = initial_response
                 return StopEvent(result={"message": "Web search results provided.", "response": initial_response})
 
-            # Return the initial response to be presented to the user
-            return StopEvent(result={"message": "Initial response", "response": initial_response, "requires_feedback": True})
+
+            elif ev.id == "initial_query":
+                source_nodes = tool_output["source_nodes"]
+                context["source_nodes"] = source_nodes
+                q = context["original_query"]
+                initial_response = await generate_initial_response(llm = self.llm , query= q, source_nodes = source_nodes)
+                context["initial_response"] = initial_response["response"]
+
+                return StopEvent(result={"message": "Initial response", "response": initial_response["response"], "requires_feedback": True})
+            else:
+                raise ValueError(f"Unexpected event id: {ev.id}")
+
         except Exception as e:
             logger.error(f"Error in process_initial_response: {e}")
             return StopEvent(result={"error": str(e)})
@@ -147,6 +157,10 @@ class RAGSystem(Workflow):
     async def fetch_additional_info(self, ev: ToolCallEvent, context: Dict[str, Any]) -> ToolCallEvent:
         try:
             additional_info = await self.tools[ev.name].fn(**ev.params)
+            print(f"RAGSystem: New info retrieved:")
+            print(additional_info['response'])
+
+
             logger.info(f"RAGSystem: Additional info retrieved: {additional_info['response']}")
             context["additional_info"] = additional_info["response"]
             
