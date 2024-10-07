@@ -12,3 +12,14 @@ llama-index-vector-stores-chroma ==0.2.0
 fastapi == 0.115.0
 uvicorn == 0.30.6
 anyio == 4.4.0
+streamlit == 1.39.0
+requests == 2.32.3
+openai == 1.47.0
+llama-index-core == 0.11.14
+torch==2.4.1
+accelerate==0.34.2
+aiohttp==3.10.5
+altair==5.4.1
+beautifulsoup4==4.12.3
+sentence-transformers==2.7.0
+transformers==4.44.2
