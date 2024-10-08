@@ -166,9 +166,6 @@ Contributions to improve the system are welcome. Please follow these steps:
 5. Push to the branch (`git push origin feature/your-feature`)
 6. Create a new Pull Request
 
-## License
-
-[Specify your license here]
 
 ## Acknowledgments
 
