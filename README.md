@@ -153,6 +153,7 @@ This agentic approach allows the RAG system to handle complex queries, adapt to 
 ## NOTE: 
 1. The src.ipynb file has the raw code for the system.
 2. The files streamfile.py , api.py , rag_setup.py are the files for the basic RAG doc QnA system. The usage is similar to the Agentic RAG system.
+3. The medium article with reasoning and explanations: https://medium.com/@nishantk613/opensource-agentic-rag-system-c6d87052de71?source=friends_link&sk=b1f258995e1e0f93d1a677d545451d98
 
 
 ## Contributing
